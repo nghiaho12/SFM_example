@@ -1,6 +1,9 @@
 /*
  * Simple SFM example using OpenCV + GTSAM + PMVS2.
- * Algorithm is based on slides from http://rpg.ifi.uzh.ch/visual_odometry_tutorial.html
+ * This code is based on material from
+ *
+ * - http://rpg.ifi.uzh.ch/visual_odometry_tutorial.html
+ * - GTSAM example/SFMExample.cpp
  *
  * Nghia Ho
  */
@@ -26,7 +29,7 @@
 using namespace std;
 
 const int IMAGE_DOWNSAMPLE = 4; // downsample the image to speed up processing
-const double FOCAL_LENGTH = 1077; // focal length in pixels, after downsampling, guess from jpeg EXIF data
+const double FOCAL_LENGTH = 4308 / IMAGE_DOWNSAMPLE; // focal length in pixels, after downsampling, guess from jpeg EXIF data
 const int MIN_LANDMARK_SEEN = 3; // minimum number of camera views a 3d point (landmark) has to be seen to be used
 
 const std::string IMAGE_DIR = "../images/";
