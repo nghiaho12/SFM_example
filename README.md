@@ -25,7 +25,7 @@ Alternatively, you can download the default dataset from
 
 Unzip it in the root directory of the project.
 
-Compile by running the script compile.sh and excuting ./main afterwards.
+Compile by running the script **compile.sh** and executing **./main** afterwards.
 
 To recover the motion of the camera the pipeline doesn't require very high resolution images. So I would select an IMAGE_DOWNSAMPLE such that the final image width is somewhere around 1000 pixels.
 
