@@ -19,6 +19,14 @@ Edit main.cpp and change the following variables for your dataset
 - IMAGE_DIR
 - IMAGES
 
+Alternatively, you can download the default dataset from
+
+[http://nghiaho.com/uploads/desk.zip](http://nghiaho.com/uploads/desk.zip)
+
+Unzip it in the root directory of the project.
+
+Compile by running the script compile.sh and excuting ./main afterwards.
+
 To recover the motion of the camera the pipeline doesn't require very high resolution images. So I would select an IMAGE_DOWNSAMPLE such that the final image width is somewhere around 1000 pixels.
 
 The focal length for the images can be guessed from the EXIF data found in most jpeg files. You don't have to be too precise because GTSAM will optimize for the focal length, just as long as the initial guess is in the ballpark.

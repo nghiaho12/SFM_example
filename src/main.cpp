@@ -32,7 +32,7 @@ const int IMAGE_DOWNSAMPLE = 4; // downsample the image to speed up processing
 const double FOCAL_LENGTH = 4308 / IMAGE_DOWNSAMPLE; // focal length in pixels, after downsampling, guess from jpeg EXIF data
 const int MIN_LANDMARK_SEEN = 3; // minimum number of camera views a 3d point (landmark) has to be seen to be used
 
-const std::string IMAGE_DIR = "../images/";
+const std::string IMAGE_DIR = "desk/";
 
 const std::vector<std::string> IMAGES = {
     "DSC02638.JPG",
@@ -232,7 +232,7 @@ int main(int argc, char **argv)
             Mat points4D;
             triangulatePoints(prev.P, cur.P, src, dst, points4D);
 
-            // Scale that the new 3d points to be close to the existing 3d points (landmark)
+            // Scale the new 3d points to be similar to the existing 3d points (landmark)
             // Use ratio of distance between pairing 3d points
             if (i > 0) {
                 double scale = 0;
@@ -308,8 +308,8 @@ int main(int argc, char **argv)
 
             // Find good triangulated points
             for (size_t j=0; j < kp_used.size(); j++) {
-                size_t k = kp_used[j];
                 if (mask.at<uchar>(j)) {
+                    size_t k = kp_used[j];
                     size_t match_idx = prev.kp_match_idx(k, i+1);
 
                     Point3f pt3d;
@@ -322,7 +322,6 @@ int main(int argc, char **argv)
                         // Found a match with an existing landmark
                         cur.kp_3d(match_idx) = prev.kp_3d(k);
 
-                        // Average the landmark 3d position
                         SFM.landmark[prev.kp_3d(k)].pt += pt3d;
                         SFM.landmark[cur.kp_3d(match_idx)].seen++;
                     } else {
